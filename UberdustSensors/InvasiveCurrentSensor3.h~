@@ -1,0 +1,46 @@
+#ifndef INVASIVECURRENT_SENSOR
+#define INVASIVECURRENT_SENSOR
+
+#include <CoapSensor.h>
+
+#define NUMBER_OF_SAMPLES 1480
+#define ICAL 15
+
+
+
+class InvasiveCurrentSensor: 
+public CoapSensor 
+{
+public:
+  int status;
+  EnergyMonitor *emon1;
+  InvasiveCurrentSensor (char * name,int pin): 
+  CoapSensor(name)
+  {
+    this->pin=pin;    
+    timestamp = 0;
+    this->status=0;
+    this->set_notify_time(30);
+    emon1->current(this->pin,5.4);
+  }
+
+  void get_value( uint8_t* output_data, size_t* output_data_len)
+  {
+    *output_data_len = sprintf( (char*)output_data, "%d", this->status); 
+  }
+
+  void check(void)
+  {
+    if(millis() - timestamp > 5000)
+    {
+	double Irms=emon1->calcIrms(1480);
+	  this->status=Irms;
+	    lasttime=millis();
+  }
+  
+
+}
+
+	
+};
+#endif

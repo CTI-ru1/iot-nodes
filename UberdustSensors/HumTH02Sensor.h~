@@ -1,0 +1,43 @@
+#include <CoapSensor.h>
+#include <math.h>
+#include <TH02_dev.h>
+#include "Arduino.h"
+#include "Wire.h" 
+#include "TemTH02Sensor.h"
+#ifndef HUMH02SENSOR
+#define HUMH02SENSOR 
+
+class HumTH02Sensor: 
+public CoapSensor 
+{
+ public:
+  int pin, status;
+  TemTH02Sensor * tem;
+  HumTH02Sensor(char * name, TemTH02Sensor * tem):
+  CoapSensor(name)
+  {
+    this->tem=tem;	
+    this->pin = pin;
+    this->status = 0;
+    this->set_notify_time(30);
+  }
+  void get_value( uint8_t* output_data, size_t* output_data_len)
+  {
+    *output_data_len = sprintf( (char*)output_data, "%d", this->status ); 
+  }
+  void check(void)
+  {
+    static unsigned long timestamp = 0;
+    if(millis() - timestamp > 5000)
+    {
+	
+	   float RHline = TH02.ReadHumidity(); 
+	 	
+
+	   float humidity=RHline+(tem->status-30)*(RHline*0.00237+0.1973);	
+	   this->status=(int)round(humidity);    
+      	   timestamp = millis();
+    }
+  }
+};
+#endif

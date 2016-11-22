@@ -1,0 +1,92 @@
+#ifndef INVASIVECURRENT_SENSOR
+#define INVASIVECURRENT_SENSOR
+#define NUMBER_OF_SAMPLES 250
+#include <vcc.h>	
+//const int currentPin = 3;
+//const unsigned long sampleTime = 100000UL;                           // sample over 100ms, it is an exact number of cycles for both 50Hz and 60Hz mains
+//const unsigned long numSamples = 140UL;                               // choose the number of samples to divide sampleTime exactly, but low enough for the ADC to keep up
+//const unsigned long sampleInterval = sampleTime/numSamples;  // the sampling interval, must be longer than then ADC conversion time
+
+//const int adc_zero = 512;       
+//int adc_zero;                                              // relative digital zero of the arudino input from ACS712 (could make this a variable and auto-adjust it)
+//#define ICAL 30
+#include <CoapSensor.h>
+
+class InvasiveCurrentSensor : 
+public CoapSensor 
+{
+public:
+  int pin, status, adc_raw ;
+  unsigned long currentAcc;
+  unsigned int count ;
+  unsigned long prevMicros;
+  unsigned long timestamp;
+ // float valor;
+//  float maximo;
+ // float minimo;
+ // float Amplitudpp;
+ // float I;
+ // int A;
+  InvasiveCurrentSensor(char * name, int pin): 
+  CoapSensor(name)
+  {
+    //this->minimo=40;
+   // this->maximo=0;
+   // this->valor=0;
+   // this->Amplitudpp=0;
+    this->pin = pin;
+    this->status = 0;
+    this->set_notify_time(30);
+  }
+  void get_value( uint8_t* output_data, size_t* output_data_len)
+  {
+    *output_data_len = sprintf( (char*)output_data, "%d", this->status ); 
+  }
+  void check(void)
+  {
+
+    if(millis() - timestamp > 5000)
+    {	
+	currentAcc = 0;
+	count = 0;
+	prevMicros = micros() - 400;
+		
+	float vc=(float)(readVcc()/1000.0);
+	//adc_zero=vcc()/2;
+		//int adc_raw;
+	while (count < NUMBER_OF_SAMPLES)
+	{
+		if (micros() - prevMicros >= 400)
+		{
+		 adc_raw = analogRead(this->pin) - 512;
+		
+		currentAcc += (unsigned long)(adc_raw * adc_raw);
+		++count;
+		prevMicros +=400;
+		}
+	}
+		
+	
+	//rms = sqrt((float)currentAcc/(float)numSamples) * (75.75 / 1024.0);
+  	float  rms = sqrt((float)currentAcc/(float)NUMBER_OF_SAMPLES) * ((vc/0.066)/ 1024.0);//+-30A sensitivity 66mV/A
+ 	//float rms = sqrt((float)currentAcc/(float)numSamples) * (27.027 / 1024.0);//+-5A sensitivity 185mv/A
+	//float rms = sqrt((float)currentAcc/(float)numSamples) * 0.0054;
+  	//Serial.println(rms);
+	//this->status=(int)(analogRead(this->pin));
+	//if (rms*1000<80)
+	//{
+	//	this->status=0;
+	//}
+		this->status=(int)(rms*1000);
+	//this->status=adc_raw;
+	//this->status=(int)(sqrt((float)currentAcc/(float)numSamples)*1000);
+	timestamp = millis();
+	//count
+    }
+  }
+
+};
+
+
+#endif
+
