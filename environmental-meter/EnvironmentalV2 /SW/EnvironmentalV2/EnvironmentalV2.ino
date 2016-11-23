@@ -66,18 +66,23 @@ void loop() {
 }
 
 void add_sensors() {
-  //The TH02 temperature&humidity digital sensor must be the first on be added:
+  //The temperature object of TH02 must be the first on be added it:
   //Because the sensor must be power off befor the other digital sensors can be adde it and by defeault is on.
-  TemDigital* tem = new TemDigital("lm35", 5);
+  //On the first parameter name the sensor value as you will receive and on the second introduce the digital pin for 
+  //Power On/Off the THI02 sensor 
+  //Temperature object
+  TemDigital* tem = new TemDigital("temp", 5);
   ap.add_resource(tem);
+  //Humidity object
   HumDigital* hum = new HumDigital("humid");
   ap.add_resource(hum);
-  //LightDigital* light = new LightDigital("light");
-  //ncoap.add_resource(light);
-  SoundGroveTest* sound = new SoundGroveTest("sound", A3);
+  //Light object
+  LightDigital* light = new LightDigital("light");
+  ap.add_resource(light);
+  //Sound object
+  SoundGrove* sound = new SoundGrove("sound", A3);
   ap.add_resource(sound);  
-  SoundGroveSample* sound2 = new SoundGroveSample("light", A3);
-  ap.add_resource(sound2);
+  
 
 }
 
