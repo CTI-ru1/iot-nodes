@@ -39,7 +39,7 @@
 <layer number="43" name="vRestrict" color="2" fill="10" visible="yes" active="yes"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="yes"/>
 <layer number="47" name="Measures" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
@@ -122,8 +122,6 @@
 <wire x1="72.05" y1="7.75" x2="71.85" y2="61.65" width="0" layer="20"/>
 <wire x1="19.3" y1="61.65" x2="19.4" y2="7.7" width="0" layer="20"/>
 <wire x1="19.3" y1="61.65" x2="71.85" y2="61.65" width="0" layer="20"/>
-<dimension x1="13.5" y1="17.05" x2="76.55" y2="14.4" x3="45.025" y3="69" textsize="3.5" layer="46" dtype="horizontal"/>
-<dimension x1="13.5" y1="17.05" x2="10.5" y2="55.05" x3="101.25" y3="36.05" textsize="3.5" layer="46" dtype="vertical"/>
 </plain>
 <libraries>
 <library name="SparkFun-Connectors">

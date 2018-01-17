@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.2">
+<eagle version="7.3.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -39,7 +39,7 @@
 <layer number="43" name="vRestrict" color="2" fill="10" visible="yes" active="yes"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="yes"/>
 <layer number="47" name="Measures" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
@@ -124,14 +124,6 @@
 <wire x1="14.542" y1="80.15" x2="33" y2="80.15" width="0" layer="20"/>
 <wire x1="33" y1="80.15" x2="33.01" y2="57.09" width="0" layer="20"/>
 <wire x1="33.01" y1="57.09" x2="37.66" y2="57.11" width="0" layer="20"/>
-<dimension x1="29.42" y1="22.12" x2="29.42" y2="15.93" x3="6.89315" y3="19.025" layer="46"/>
-<dimension x1="18.2" y1="32.6" x2="23.0281" y2="25.3233" x3="38.2692" y3="28.96165" layer="46" dtype="vertical"/>
-<dimension x1="29.5053" y1="25.2448" x2="-16.5853" y2="77.2926" x3="79.4529" y3="51.2687" layer="46" dtype="vertical"/>
-<dimension x1="14.542" y1="80.15" x2="30.52" y2="75" x3="22.531" y3="14.32" layer="46" dtype="horizontal"/>
-<dimension x1="18.2" y1="32.6" x2="18.09" y2="47.18" x3="-7.47" y3="39.89" layer="46" dtype="vertical"/>
-<dimension x1="18.2" y1="32.6" x2="18.15" y2="47.6" x3="-16.54" y3="40.1" layer="46" dtype="vertical"/>
-<dimension x1="18.2" y1="47.6" x2="18.03" y2="62.61" x3="-3.91" y3="55.105" layer="46" dtype="vertical"/>
-<dimension x1="18.2" y1="32.6" x2="19.69" y2="25.28" x3="44.18" y3="28.94" layer="46" dtype="vertical"/>
 </plain>
 <libraries>
 <library name="SparkFun-Connectors">
@@ -264,7 +256,7 @@ Metric Code Size 2012</description>
 <class number="0" name="default" width="0" drill="0">
 </class>
 </classes>
-<designrules>
+<designrules name="default">
 <description language="de">&lt;b&gt;EAGLE Design Rules&lt;/b&gt;
 &lt;p&gt;
 Die Standard-Design-Rules sind so gewählt, dass sie für 
@@ -350,6 +342,9 @@ design rules under a new name.</description>
 <autorouter>
 <pass name="Default">
 <param name="RoutingGrid" value="50mil"/>
+<param name="AutoGrid" value="1"/>
+<param name="Efforts" value="0"/>
+<param name="TopRouterVariant" value="1"/>
 <param name="tpViaShape" value="round"/>
 <param name="PrefDir.1" value="*"/>
 <param name="PrefDir.2" value="0"/>

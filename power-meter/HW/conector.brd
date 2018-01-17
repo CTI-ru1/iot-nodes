@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.2">
+<eagle version="7.3.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -39,7 +39,7 @@
 <layer number="43" name="vRestrict" color="2" fill="10" visible="yes" active="yes"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="yes"/>
 <layer number="47" name="Measures" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
@@ -124,9 +124,6 @@
 <wire x1="14.542" y1="82.14" x2="34.31" y2="82.22" width="0" layer="20"/>
 <wire x1="34.31" y1="82.22" x2="34.24" y2="57.32" width="0" layer="20"/>
 <wire x1="34.24" y1="57.32" x2="34.21" y2="57.18" width="0" layer="20"/>
-<dimension x1="29.5053" y1="25.2448" x2="-16.5853" y2="77.2926" x3="79.4529" y3="51.2687" layer="46" dtype="vertical"/>
-<dimension x1="14.542" y1="80.15" x2="30.52" y2="75" x3="22.531" y3="102.7" layer="46" dtype="horizontal"/>
-<dimension x1="30.57" y1="25.27" x2="30.7" y2="23.74" x3="6.4" y3="24.505" layer="46" dtype="vertical"/>
 </plain>
 <libraries>
 <library name="con-wago-508">
@@ -303,7 +300,7 @@ We've spent an enormous amount of time creating and checking these footprints an
 <class number="0" name="default" width="0" drill="0">
 </class>
 </classes>
-<designrules>
+<designrules name="default">
 <description language="de">&lt;b&gt;EAGLE Design Rules&lt;/b&gt;
 &lt;p&gt;
 Die Standard-Design-Rules sind so gewählt, dass sie für 
@@ -389,6 +386,9 @@ design rules under a new name.</description>
 <autorouter>
 <pass name="Default">
 <param name="RoutingGrid" value="50mil"/>
+<param name="AutoGrid" value="1"/>
+<param name="Efforts" value="0"/>
+<param name="TopRouterVariant" value="1"/>
 <param name="tpViaShape" value="round"/>
 <param name="PrefDir.1" value="*"/>
 <param name="PrefDir.2" value="0"/>
